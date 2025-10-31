@@ -1,4 +1,4 @@
-# BT2.AN TOÀN VÀ BẢO MẬT THÔNG TIN
+# BT2. AN TOÀN VÀ BẢO MẬT THÔNG TIN
 ## Họ và tên: Phương Thị Ánh Nguyệt - K225480106098
 ## CÁC YÊU CẦU CỤ THỂ
 ### Cấu trúc PDF liên quan chữ ký (Nghiên cứu)
