@@ -41,6 +41,7 @@
 - Giải thích khác biệt giữa thông tin thời gian /M và timestamp RFC3161
 <img width="1917" height="990" alt="image" src="https://github.com/user-attachments/assets/8d080551-c244-40e0-afb0-172c2404bb7c" />
 ### 3)  bước tạo và lưu chữ ký trong PDF (đã có private RSA)- Viết script/code thực hiện tuần tự:
+
     1. Chuẩn bị file PDF gốc.
     2. Tạo Signature field (AcroForm), reserve vùng /Contents (8192 bytes).
     3. Xác định /ByteRange (loại trừ vùng /Contents khỏi hash).
