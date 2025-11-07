@@ -1,0 +1,55 @@
+=== KIỂM TRA XÁC THỰC CHỮ KÝ PDF ===
+Thời gian kiểm thử: 2025-11-07 18:52:46.075084
+File kiểm tra: C:\Users\Admin\Desktop\BT2.SECUR\ThemNDvaoPAN.pdf
+====================================
+🔍 Phát hiện chữ ký: SigField1
+/ByteRange: [0, 1370996, 1376160, 826]
+/Contents length: 2581 bytes
+SHA-256(ByteRange): 7cfcb5d93a3348cebeef7057a9504fe933d1b3e1b6192347fcded3a4ceb3c8f1... ✅
+====================================
+🔒 Đang xác thực chữ ký...
+Signer info
+-----------
+Certificate subject: "Common Name: Phuong Anh Nguyet, Organization: K58KTP, Locality: Thai Nguyen, State/Province: Thai Nguyen, Country: VN"
+Certificate SHA1 fingerprint: bcb5e90374a2d3146b0d424f8e3458333e747ee4
+Certificate SHA256 fingerprint: cdb9f7fb25e8a739fe630070e222d90e3922dffa9fe08ae0d6a684b6d3923b42
+Trust anchor: "Common Name: Phuong Anh Nguyet, Organization: K58KTP, Locality: Thai Nguyen, State/Province: Thai Nguyen, Country: VN"
+The signer's certificate is untrusted.
+
+
+Integrity
+---------
+The signature is cryptographically unsound.
+
+The digest algorithm used was 'sha256'.
+The signature mechanism used was 'sha256_rsa'.
+
+
+Signing time
+------------
+Signing time as reported by signer: 2025-10-31T15:27:49+00:00
+
+
+Modifications
+-------------
+The signature does not cover the entire file.
+Some modifications may be illegitimate, and they appear to be incompatible with the current document modification policy.
+
+
+Bottom line
+-----------
+The signature is judged INVALID.
+
+
+
+📜 Thông tin chứng thư người ký:
+  Chủ thể: Common Name: Phuong Anh Nguyet, Organization: K58KTP, Locality: Thai Nguyen, State/Province: Thai Nguyen, Country: VN
+  SHA1 fingerprint: BC B5 E9 03 74 A2 D3 14 6B 0D 42 4F 8E 34 58 33 3E 74 7E E4
+  SHA256 fingerprint: CD B9 F7 FB 25 E8 A7 39 FE 63 00 70 E2 22 D9 0E 39 22 DF FA 9F E0 8A E0 D6 A6 84 B6 D3 92 3B 42
+🕒 Thời gian ký (VN): 2025-10-31 22:27:49+07:00
+❌ File đã bị thay đổi sau khi ký!
+====================================
+❌ CHỮ KÝ KHÔNG HỢP LỆ hoặc FILE BỊ SỬA ĐỔI.
+⚠️ Lý do thường gặp: chứng thư tự ký (self-signed), không có nonRepudiation, hoặc không thuộc CA tin cậy.
+
+📄 Log đã lưu tại: C:\Users\Admin\Desktop\BT2.SECUR\verifyFileDaChinhsua.txt
