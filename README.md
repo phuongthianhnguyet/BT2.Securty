@@ -16,31 +16,55 @@
  3. Demo files: original.pdf, signed.pdf, tampered.pdf.
  4. (Tuỳ chọn) Video 3–5 phút demo kết quả.
 ## BÀI LÀM
-### Sinh Khoá RSA và chứng thư số
-**Tạo file:** `BT2.SECUR/gen_keys.py`
+### 1 Chuẩn bị file PDF gốc cần kí
+### 2 Tạo file sinh khoá RSA và chứng thư số
+Sinh khoá RSA và chứng thư số mục đích là để xác thực chữ kí số và ký. Tạo một file `gen_keys.py`, sau khi chạy file này sẽ sinh ra hai file `signer_cert.pem` và `signer_key.pem`.
+### 3 Tạo chữ kí và kí file PDF
+- Ta sẽ thực hiện tạo Signature field (AcroForm) và reserve vùng /Contents (8192 bytes), xác định /ByteRange để loại trừ vùng
+/Contents khỏi hash) và tính Hash (SHA-256) trên vùng ByteRange.
+Sinh PKCS#7 detached signature và chèn blob DER PKCS#7 vào
+/Contents dung offset 
+- Sau khi chạy lệnh python sign_pdf. py thì các bước trênđã được thực
+hiện và tạo ra một file mới đã được ký chữ ký số hợp
+lệ `Phuong_Anh_Nguyet.pdf`
+- Đây là kết quả sau khi chạy file có chữ ký số
 
-**Thao tác:** `cd BT2.SECUR python gen_keys.py`
+<img width="959" height="512" alt="3" src="https://github.com/user-attachments/assets/74b8ecb4-6636-4bc9-bcc8-25fddce01d25" />
 
-**Kết quả:**
+#### Chèn thêm nội dung vào file PDF
 
-*keys/signer_cert.pem* (RSA 2048-bit)
+- Tạo một file `chen_noidung.py` sau đó thêm nội dung vào file. Chạy lệnh -> tạo ra 1 file PDF đã được chèn thêm nội dung vào `ThemNDvaoPAN.pdf`
 
-*keyssigner_key.pem* (Chứng thư số tự ký)
+<img width="1902" height="731" alt="image" src="https://github.com/user-attachments/assets/1e09ad78-8b20-4e35-9694-94269c3b6d52" />
 
-### Tạo và kí file pdf
+- Đây là thông báo từ xác thực đã khác khi thêm nội dung vào file.
 
-**file:** `sign_pdf.py`
+<img width="1824" height="944" alt="image" src="https://github.com/user-attachments/assets/fa63a788-a567-456d-9f9c-2378857541c9" />
 
-**Thực hiện:** `python sign_pdf.py`
+### 4 Xác định chữ kí trên PDF đã kí.
+#### Các bước kiểm tra xác thực chữ kí trên pdf:
 
-**Kết quả:**
-**File `Phuong_Anh_Nguyet.pdf`(PDF đã có chữ ký số hợp lệ)**
+- Đọc Signature dictionary:/Contents,/ByteRange.
+- Tách PKCS#7, kiểm tra định dạng.
+- Tính hash và so sánh messageDigest.
+- Verify signature bằng public key trong cert.
+- Kiểm tra chain -> root trusted CA.
+- Kiểm tra OCSP/CRL.
+- Kiểm tra timestamp token.
+- Kiểm tra incremental update (phát hiện sửa đổi). Tạo một file `verify_pdf_signature_full.py`để thực hiện chạy các  bước ở trên sau đó sẽ tạo ra file xác minh chữ kí hợp lệ hay không. Kết quả:
+  
+- *Có chữ kí hợp lệ*
 
-<img width="1917" height="990" alt="image" src="https://github.com/user-attachments/assets/8d080551-c244-40e0-afb0-172c2404bb7c" />
+ <img width="577" height="360" alt="OK4" src="https://github.com/user-attachments/assets/dbb5e6b4-9e76-4b0b-9e87-051b0e81449a" />
+ 
+- *Có chữ kí không hợp lệ*
+  
+<img width="597" height="336" alt="ok5" src="https://github.com/user-attachments/assets/8a7348fb-f33a-4adc-ac64-e86bdd3250b5" />
 
-### Xác minh chữ ký PDF
-**Kết quả** khi đã xác minh thành công
-
-<img width="1866" height="536" alt="image" src="https://github.com/user-attachments/assets/0076c635-835a-4bbe-8a66-a78a741107f9" />
-
-
+### 5 Kết quả demo
+ #### Sau khi thực hiện yêu cầu của đề bài, tạo ra các file:
+ - Baiso2.pdf: file gốc chưa có chữ kí.
+ - Phuong_Anh_Nguyet.pdf: file đã kí và chứa chữ kí số hợp lệ.
+ - ThemNDvaoPAN.pdf: file chứa nội dung bị thay đổi sau khi đã kí chữ kí hợp lệ.
+ - verifyFileDaChinhsua.txt: file chứa kết quả xác minh không hợp lệ do nội dung đã kí không hợp lệ.
+ - verifyOK.txt: đây là file chứa kết quả xác minh hợp lệ.
